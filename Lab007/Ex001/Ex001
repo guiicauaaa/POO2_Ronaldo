@@ -1,0 +1,79 @@
+class Funcionario {
+
+    protected String nome;
+    protected String cpf;
+    protected double salarioBase;
+
+  
+    public Funcionario(String nome, String cpf, double salarioBase) {
+        this.nome = nome;
+        this.cpf = cpf;
+        this.salarioBase = salarioBase;
+    }
+
+    public double calcularSalarioTotal() {
+        return salarioBase;
+    }
+}
+
+
+class Gerente extends Funcionario {
+    private String departamento;
+    private double bonificacaoPercentual; 
+
+    public Gerente(String nome, String cpf, double salarioBase, String departamento, double bonificacaoPercentual) {
+        super(nome, cpf, salarioBase); 
+        this.departamento = departamento;
+        this.bonificacaoPercentual = bonificacaoPercentual;
+    }
+
+
+    @Override
+    public double calcularSalarioTotal() {
+        double valorBonificacao = salarioBase * (bonificacaoPercentual / 100);
+        return salarioBase + valorBonificacao;
+    }
+}
+
+
+class Desenvolvedor extends Funcionario {
+    private String linguagemPrincipal;
+    private double bonusPorProjeto;
+
+ 
+    public Desenvolvedor(String nome, String cpf, double salarioBase, String linguagemPrincipal, double bonusPorProjeto) {
+        super(nome, cpf, salarioBase); 
+        this.linguagemPrincipal = linguagemPrincipal;
+        this.bonusPorProjeto = bonusPorProjeto;
+    }
+
+    @Override
+    public double calcularSalarioTotal() {
+        return salarioBase + bonusPorProjeto;
+    }
+}
+
+
+public class Main {
+    public static void main(String[] args) {
+        
+        Funcionario funcionarioComum = new Funcionario("Gustavo Oliveira, "111.222.333-44", 500);
+        Gerente gerente = new Gerente("Guilherme Cauã", "555.666.777-88", 8000.0, "TI", 15.0); // 15% de bônus
+        Desenvolvedor desenvolvedor = new Desenvolvedor("Janete Costa", "999.888.777-66", 5500.0, "Java", 1200.0); // Bônus fixo de 1200
+
+       
+        System.out.println("--- Relatório de Salários ---");
+        
+        System.out.println("Funcionário: " + funcionarioComum.nome);
+        System.out.println("Salário Total: R$ " + funcionarioComum.calcularSalarioTotal());
+        System.out.println("-----------------------------");
+
+        System.out.println("Gerente: " + gerente.nome);
+        System.out.println("Salário Total: R$ " + gerente.calcularSalarioTotal());
+        System.out.println("-----------------------------");
+
+        System.out.println("Desenvolvedor: " + desenvolvedor.nome);
+        System.out.println("Salário Total: R$ " + desenvolvedor.calcularSalarioTotal());
+        System.out.println("-----------------------------");
+    }
+}

@@ -1,0 +1,112 @@
+public class Veiculo {
+
+    public String marca;
+    public String modelo;
+    public int ano;
+    public double precoDiaria;
+
+
+    public Veiculo(String marca, String modelo, int ano, double precoDiaria) {
+        this.marca = marca;
+        this.modelo = modelo;
+        this.ano = ano;
+        this.precoDiaria = precoDiaria;
+    }
+
+    public double calcularCustoLocacao(int dias) {
+        return dias * precoDiaria;
+    }
+}
+
+public class Moto extends Veiculo {
+    private int cilindrada;
+    private String tipoPartida;
+
+
+    public Moto(String marca, String modelo, int ano, double precoDiaria, int cilindrada, String tipoPartida) {
+
+        super(marca, modelo, ano, precoDiaria);
+        this.cilindrada = cilindrada;
+        this.tipoPartida = tipoPartida;
+    }
+
+
+    public int getCilindrada() { return cilindrada; }
+    public String getTipoPartida() { return tipoPartida; }
+}
+public class Carro extends Veiculo {
+    private int numeroPortas;
+    private String tipoCombustivel;
+
+    
+    public Carro(String marca, String modelo, int ano, double precoDiaria, int numeroPortas, String tipoCombustivel) {
+        
+        super(marca, modelo, ano, precoDiaria);
+        this.numeroPortas = numeroPortas;
+        this.tipoCombustivel = tipoCombustivel;
+    }
+
+    
+    public int getNumeroPortas() { return numeroPortas; }
+    public String getTipoCombustivel() { return tipoCombustivel; }
+}
+import model.Carro;
+import model.Moto;
+
+public class Main {
+    public static void main(String[] args) {
+
+        Carro meuCarro = new Carro("Volkswagem", "Polo", 2024, 150.0, 4, "Flex");
+        Moto minhaMoto = new Moto("Yamaha", "Fazer", 2023, 110.0, 321, "Elétrica");
+        Carro meuCarro2 = new Carro("Chevrolet", "Onix", 2024, 140.0, 4, "Flex");
+        Carro meuCarro3 = new Carro("Fiat", "Argo", 2023, 120.0, 4, "Flex");
+        Moto minhaMoto2 = new Moto("Honda", "CG", 2023, 110.0, 321, "Elétrica");
+
+
+
+        int diasCarro = 7;
+        int diasMoto = 3;
+
+
+
+        System.out.println("====== Sistema de Gestão de Frota ======");
+
+        System.out.println("\nResumo da Locação - CARRO:");
+        System.out.println("Veículo: " + meuCarro.marca + " " + meuCarro.modelo);
+        System.out.println("Valor da Diária: R$ " + meuCarro.precoDiaria);
+        System.out.println("Dias: " + diasCarro);
+        System.out.println("Custo Total: R$ " + meuCarro.calcularCustoLocacao(diasCarro));
+
+
+        System.out.println("\nResumo da Locação - CARRO:");
+        System.out.println("Veículo: " + meuCarro2.marca + " " + meuCarro2.modelo);
+        System.out.println("Valor da Diária: R$ " + meuCarro2.precoDiaria);
+        System.out.println("Dias: " + diasCarro);
+        System.out.println("Custo Total: R$ " + meuCarro2.calcularCustoLocacao(diasCarro));
+
+
+        System.out.println("\nResumo da Locação - CARRO:");
+        System.out.println("Veículo: " + meuCarro3.marca + " " + meuCarro3.modelo);
+        System.out.println("Valor da Diária: R$ " + meuCarro3.precoDiaria);
+        System.out.println("Dias: " + diasCarro);
+        System.out.println("Custo Total: R$ " + meuCarro.calcularCustoLocacao(diasCarro));
+
+
+        System.out.println("\n----------------------------------------");
+
+        System.out.println("\nResumo da Locação - MOTO:");
+        System.out.println("Veículo: " + minhaMoto.marca + " " + minhaMoto.modelo);
+        System.out.println("Valor da Diária: R$ " + minhaMoto.precoDiaria); // <-- Linha adicionada
+        System.out.println("Dias locados: " + diasMoto);
+        System.out.println("Custo Total: R$ " + minhaMoto.calcularCustoLocacao(diasMoto));
+
+
+        System.out.println("\nResumo da Locação - MOTO:");
+        System.out.println("Veículo: " + minhaMoto2.marca + " " + minhaMoto2.modelo);
+        System.out.println("Valor da Diária: R$ " + minhaMoto2.precoDiaria);
+        System.out.println("Dias: " + diasMoto);
+        System.out.println("Custo Total: R$ " + minhaMoto2.calcularCustoLocacao(diasMoto));
+
+
+    }
+}
